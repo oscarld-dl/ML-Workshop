@@ -1,0 +1,16 @@
+import pandas as pd
+import numpy as np
+
+#Read the file you want to extract the metrics from:
+df = pd.read_excel("D:/THESIS/OUTPUTS/master.xlsx", sheet_name='experimental')
+
+#Select just the number columns to avoid any future problem with the calculations:
+num_df = df.select_dtypes(include=[np.number])
+
+#Now, we use .agg (aggregate function from pandas) to select which function we want to apply to each column:
+stats = num_df.agg(['min', 'max', 'mean', 'std']).transpose()
+
+stats.columns = ['Min.', 'Max.', 'Mean', 'SD']
+stats = stats.round(5)
+
+stats.to_excel("D:/THESIS/OUTPUTS/workshop_stats.xlsx")
