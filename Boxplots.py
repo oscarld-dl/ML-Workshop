@@ -21,12 +21,13 @@ df_renamed = df.rename(columns={
 distortion_cols = [f"{i}" for i in range(1, 10)]
 
 #Since Seaborn require long format, we use .melt to transfrom the data frame:
-df_melted = df_renamed.melt(value_vars=distortion_cols, var_name="Node", value_name="Hardness")
+df_melted = df_renamed.melt(value_vars=distortion_cols, var_name="MP", value_name="Hardness")
 
 # Plot with seaborn
 plt.figure(figsize=(12, 6))
-sns.boxplot(x="Node", y="Hardness", data=df_melted, palette={'orange'})
-plt.title("Boxplot of Hardness Values per Node")
+sns.boxplot(x="MP", y="Hardness", data=df_melted, palette={'orange'})
+plt.title("Boxplot of Hardness Values per MP")
 plt.ylabel("Hardness [-]")
-plt.savefig('Boxplot of Hardness Values per Node.jpg', dpi=300, bbox_inches='tight')
+plt.savefig('Boxplot of Hardness Values per MP.jpg', dpi=300, bbox_inches='tight')
+
 plt.show()
